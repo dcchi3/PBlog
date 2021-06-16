@@ -20,6 +20,8 @@ class BlogPostController extends Controller
         return view('blog.index', [
                 'posts' => $posts,
             ]); //returns the view with posts
+
+
     }
 
     /**
@@ -49,7 +51,9 @@ class BlogPostController extends Controller
             
         ]);
 
+
         return redirect('blog/' . $newPost->id);
+        return response()->json($newPost, 201);
 
     }
 
@@ -81,7 +85,10 @@ class BlogPostController extends Controller
         return view('blog.edit', [
             'post' => $blogPost,
             ]); //returns the edit view with the post
+
+            return response()->json($post, 200);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -115,6 +122,7 @@ class BlogPostController extends Controller
         $blogPost->delete();
 
         return redirect('/blog');
+        return response()->json(null, 204);
     }
 
     }
